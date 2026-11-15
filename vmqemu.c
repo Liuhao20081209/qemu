@@ -399,7 +399,7 @@ static int ui_confirm(const char *fmt, ...) {
     vsnprintf(buf, sizeof buf, fmt, ap);
     va_end(ap);
     { size_t i; for (i = 0; buf[i]; i++) if (buf[i] == '\n') buf[i] = ' '; }
-    snprintf(line, sizeof line, "%s   [ y ] 确认   [ n ] 取消", buf);
+    snprintf(line, sizeof line, "%s [y] 确认 [n] 取消", buf);
     {
         /* 超过一行会被终端折到下一行，底行就糊了：截断加省略号 */
         int lim = COLS > 20 ? COLS : 80;
@@ -5294,8 +5294,8 @@ static void action_screen(void) {
         if (ch == 's' || ch == 'S') {
             int k;
             char q[512], path[PATHBUF], shown[PATHBUF];
-            const char *a = "保存到 %s ？   [ y ] 保存   [ n ] 取消";
-            const char *b = "保存 %s ？  y 保存  n 取消";
+            const char *a = "保存到 %s ？[y] 保存 [n] 取消";
+            const char *b = "保存 %s ？ y 保存  n 取消";
             const char *c = "保存 %s ？ y/n";
             const char *fmt;
             int fixedw, avail;
